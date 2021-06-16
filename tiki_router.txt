@@ -1,0 +1,53 @@
+
+
+import socket
+
+HOST = input("enter bluetooth adress of device:")  
+PORT = 65432        # Port to listen on (non-privileged ports are > 1023)
+
+with socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM) as s:
+    s.bind((HOST, PORT))
+    s.listen()
+    conn, addr = s.accept()
+    with conn:
+        print('Connected by', addr)
+        while True:
+            data = conn.recv(1024)
+            conn.sendall(data)
+            if not data:
+                break
+            if addr == directory["user1"]:
+                clientSocket.connect((directory["user2]"],9090))
+                clientSocket.send(data.encode())
+            if addr == directory["user2"]:
+                clientSocket.connect((directory["user1]"],9090))
+                clientSocket.send(data.encode())    
+            
+
+
+
+def add_devices(directory):
+    a = input("enter bluetooth adress of first device:")
+    b = input("add bluetooth adress of the second device:")
+    directory["user1"] = a
+    directory["user2"] = b
+
+
+
+
+
+directory = {
+    "user1":"",
+    "user2":""
+}
+
+
+
+
+
+
+
+
+
+
+
